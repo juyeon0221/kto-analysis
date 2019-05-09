@@ -5,7 +5,8 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from konlpy.tag import Kkma
 
-driver = webdriver.Chrome('D:/python/workspace/chromedriver.exe')
+#driver = webdriver.Chrome('D:/python/workspace/chromedriver.exe')
+driver = webdriver.Chrome()
 
 driver.get(
     'https://twitter.com/search?l=&q=from%3AKor_Visitkorea%20since%3A2019-01-01&src=typd')
@@ -68,7 +69,8 @@ for li in li_list:
         id_and_noun = [id_num,noun]
         id_and_noun_list.append(id_and_noun)
 
-print('데이터 추출 성공')
+print(id_and_date_and_body_list)
+print(id_and_noun_list)
 
 # 엑셀 저장
 workbook = xlsxwriter.Workbook('구석구석데이터.xlsx')
@@ -83,13 +85,17 @@ for id_num, date, body in id_and_date_and_body_list:
     worksheet_first.write(row, col, id_num)
     worksheet_first.write(row, col+1, date)
     worksheet_first.write(row, col+2, body)
+    row = row+1
 
 print('첫번째 시트 저장 완료')
 
+row=0
+col=0
 #시트2_아이디, 명사
 for id_num, noun in id_and_noun_list:
     worksheet_second.write(row, col, id_num)
     worksheet_second.write(row, col+1, noun)
+    row = row+1
 
 print('두번째 시트 저장 완료')
 
