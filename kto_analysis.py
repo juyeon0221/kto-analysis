@@ -5,11 +5,11 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from konlpy.tag import Kkma
 
-#driver = webdriver.Chrome('D:/python/workspace/chromedriver.exe')
-driver = webdriver.Chrome()
+driver = webdriver.Chrome('D:/python/workspace/chromedriver.exe')
+#driver = webdriver.Chrome()
 
 driver.get(
-    'https://twitter.com/search?l=&q=from%3AKor_Visitkorea%20since%3A2019-01-01&src=typd')
+    'https://twitter.com/search?l=&q=from%3AKor_Visitkorea%20since%3A2015-01-01&src=typd')
 
 time.sleep(3)
 
@@ -37,11 +37,6 @@ driver.close()
 
 html = BeautifulSoup(contents, 'html.parser')
 li_list = html.find_all("li", {"class": "js-stream-item stream-item stream-item"})
-
-'''
-workbook = xlsxwriter.Workbook('구석구석데이터.xlsx')
-worksheet = workbook.add_worksheet
-'''
 
 id_num=0
 id_and_date_and_body_list=[]
